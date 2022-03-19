@@ -175,7 +175,6 @@ userAuthRouter.post("/change-password", login_required, async (req, res, next) =
         // user_id를 통해 받아온 사용자 정보를 user에 정의
         const user = await userAuthService.getUserInfo({ user_id });
         const { oldpassword, password, passwordConfirm } = req.body;
-        console.log(user);
         if (!(await bcrypt.compare(oldpassword, user.password))) {
             throw new Error("기존 비밀번호가 틀렸습니다.");
         }
